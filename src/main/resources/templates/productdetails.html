@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<style>
+
+</style>
+
+<head>
+    <meta charset="UTF-8">
+    <title>details</title>
+    <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
+    <link rel='stylesheet'
+          href='https://cdnjs.cloudflare.com/ajax/libs/foundation/5.5.3/css/foundation.min.css?ver=4.4.2'>
+    <link rel='stylesheet' href='https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css'>
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/Ladda/0.9.8/ladda.min.css'>
+    <link rel="stylesheet" th:href="@{/static/css/c/css/st.css}">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Material Design Bootstrap</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
+    <link th:href="@{/static/product-info/bootstrap.min.css}" rel="stylesheet">
+    <link th:href="@{/static/product-info/mdb.min.css}" rel="stylesheet">
+    <link th:href="@{/static/product-info/style.min.css}" rel="stylesheet">
+
+</head>
+<body>
+
+
+
+<div class="row">
+    <a class="cart-icon" id="carticonid" onclick="toggle_visibility('cartid')">
+
+        <div style="overflow: auto;height: 200px">
+            <span id="totalItems">0</span>
+
+            <ul id="cartid" class="cart" style="overflow-y: auto;height: 300px;overflow-x: hidden; margin-top: 50px">
+            </ul>
+        </div>
+    </a>
+</div>
+<!-- Navbar -->
+
+<!-- Navbar -->
+
+<!--Main layout-->
+<main class="mt-5 pt-4">
+
+    <div class="container dark-grey-text mt-5">
+
+        <!--Grid row-->
+        <div class="row wow fadeIn">
+
+            <!--Grid column-->
+            <div class="col-md-6 mb-4">
+
+                <img style="height: 300px;" th:src="@{'/photos/'+${productDetail.pictureUrl}}" class="img-fluid" alt="">
+
+            </div>
+
+            <!--Grid column-->
+
+            <!--Grid column-->
+            <div class="col-md-6 mb-4">
+
+                <!--Content-->
+                <div class="p-4">
+
+                    <div class="mb-3">
+                        <a href="">
+                            <span class="badge purple mr-1" th:text="${productDetail.categoryName}" >category</span>
+                        </a>
+                        <a href="">
+                            <span class="badge blue mr-1">New</span>
+                        </a>
+                        <a href="">
+                            <span class="badge red mr-1">Bestseller</span>
+                        </a>
+                    </div>
+
+                    <p class="lead">
+              <span class="mr-1">
+                <del th:text="${productDetail.price}+'$'">$200</del>
+              </span>
+                        <span th:text="${productDetail.price}+'$'">100</span>
+                    </p>
+
+                    <p class="lead font-weight-bold">Description</p>
+
+                    <p th:text="${productDetail.description}"></p>
+
+                    <button class="btn btn-primary btn-md my-0 p prod-2"  onclick="add()">Add to cart
+                        <i class="fas fa-shopping-cart ml-1"></i>
+                    </button>
+
+
+                </div>
+                <!--Content-->
+
+            </div>
+            <!--Grid column-->
+
+        </div>
+        <!--Grid row-->
+
+        <hr>
+
+
+
+        <!--for offers -->
+       <!-- <div class="row wow fadeIn">
+
+            <div class="col-lg-4 col-md-6 mb-4">
+
+                <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Products/13.jpg" class="img-fluid" alt="">
+
+            </div>
+             </div>-->
+
+    </div>
+</main>
+<!--Main layout-->
+
+<!--Footer-->
+<footer class="page-footer text-center font-small mt-4 wow fadeIn">
+    <div class="footer-copyright py-3">
+        © 2019 Copyright:
+        <a target="_blank"> Heshmat Tawfik </a>
+    </div>
+    <!--/.Copyright-->
+
+</footer>
+
+<script src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js?ver=1.11.2'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.10.1/lodash.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/Ladda/0.9.8/spin.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/Ladda/0.9.8/ladda.min.js'></script>
+<script th:inline="javascript">
+
+</script>
+
+<script th:inline="javascript">
+    var s = [[${ppp}]]
+    var product = JSON.parse(s)
+    let productos = product
+    function add(){
+        let pi=(parseInt([[${pid}]]))
+        if (pi===undefined){
+            alert("pi is null det")
+        }
+        var l = Ladda.create( document.querySelector( '.prod-'+2 ) );
+      //  alert("clicked"+id)
+        l.start();
+        var productos = JSON.parse(localStorage.getItem('productos')),
+            producto = _.find(productos,{ 'id' : pi }),
+            quantity = 1
+
+        if(undefined !== producto){
+            if(quantity > 0){
+                setTimeout(
+                    function(){
+                        var cart = (JSON.parse(localStorage.getItem('cart')) != null) ? JSON.parse(localStorage.getItem('cart')) : {items : []} ;
+                        app.searchProd(cart,producto.id,parseInt(quantity),producto.name,producto.price,producto.pictureUrl)
+                        l.stop();},500)
+            }else{
+                alert('Solo se permiten cantidades mayores a cero')
+            }
+        }
+        else{alert('Oops! something went wrong'+pi)}
+
+
+    }
+
+
+</script>
+<script th:src="@{/static/css/c/index.js}">
+</script>
+
+
+
+</body>
+</html>

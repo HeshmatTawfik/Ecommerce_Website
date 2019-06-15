@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+
+<head>
+    <meta charset="UTF-8">
+    <title>Shopping cart with pure javascript</title>
+    <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
+
+    <link rel='stylesheet'
+          href='https://cdnjs.cloudflare.com/ajax/libs/foundation/5.5.3/css/foundation.min.css?ver=4.4.2'>
+    <link rel='stylesheet' href='https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css'>
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/Ladda/0.9.8/ladda.min.css'>
+    <link rel="stylesheet" th:href="@{/static/css/c/css/st.css}">
+
+    <div  th:replace="/usernavbar :: usernavbar-header-css"></div>
+
+</head>
+<body>
+
+
+<form method="post" th:action="@{/products}" th:object="${shoppingCart}" name="l" id="checkout-form">
+    <input id="ii" type="hidden" name="ii" th:field="*{cartToJson}">
+    <button name="ll" id="submit-form-button" type="submit" onclick="CheckOut()">Check out</button>
+</form>
+
+<div class="row">
+
+    <a class="cart-icon" id="carticonid" onclick="toggle_visibility('cartid')">
+        <div style="overflow: auto;height: 200px">
+
+            <span id="totalItems">0</span>
+            <ul id="cartid" class="cart" style="overflow-y: auto;height: 500px;overflow-x: hidden; margin-top: 50px">
+            </ul>
+        </div>
+    </a>
+    <div class="productosWrapper large-12 columns" style="overflow-y: scroll;margin-right: 70px">
+    </div>
+</div>
+<div th:if="${auth}">
+    <div th:replace="/usernavbar :: usernavbarheader"></div>
+
+</div>
+
+<script src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js?ver=1.11.2'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.10.1/lodash.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/Ladda/0.9.8/spin.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/Ladda/0.9.8/ladda.min.js'></script>
+
+
+<script th:inline="javascript">
+    var s = [[${ppp}]]
+    var product = JSON.parse(s)
+    let productos = product
+    var form = document.getElementById('submit-form-button')
+
+    function CheckOut() {
+
+        var cart = (JSON.parse(localStorage.getItem('cart')) != null) ? JSON.parse(localStorage.getItem('cart')) : {items: []};
+        var obj = JSON.stringify(cart.items)
+        alert(obj)
+        document.getElementById('ii').value = obj;
+        localStorage.clear();
+    }
+
+
+
+</script>
+
+<script th:src="@{/static/css/c/index.js}"></script>
+<script th:inline="javascript">
+    function showcart2() {
+
+        var cart = (JSON.parse(localStorage.getItem('cart')) != null) ? JSON.parse(localStorage.getItem('cart')) : {items: []};
+        var obj = JSON.stringify(cart.items)
+        document.getElementById('cart2').value = obj;
+        alert("showcart2"+obj)
+      //  localStorage.clear();
+    }
+
+</script>
+
+
+</body>
+</html>

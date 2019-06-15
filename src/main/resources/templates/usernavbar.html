@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Pure CSS toggle buttons</title>
+    <div th:fragment="usernavbar-header-css">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+        <link rel="stylesheet" th:href="@{/static/usernavbar/css/style.css}">
+    </div>
+
+</head>
+
+
+<body>
+
+<div th:fragment="usernavbarheader">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"/>
+    <aside class="sidebar">
+        <ul class="no-list sb_top_lv">
+            <li><i class="fa fa-dashboard"></i><span>Home</span>
+                <ul class="no-list sb_dropdown clearfix">
+                    <li><a href="#">The Dash</a></li>
+                    <li><a>Settings</a></li>
+                    <li><a>Account</a></li>
+                </ul>
+            </li>
+            <li><i class="fa fa-cubes"></i><span>Projects</span>
+                <ul class="no-list sb_dropdown clearfix">
+                    <li><a>Awesome Project</a></li>
+                    <li><a>No Lama No!!</a></li>
+                    <li><a>I Like Trains</a></li>
+                </ul>
+            </li>
+            <li><i class="fa fa-users"></i><span>CRM</span>
+                <ul class="no-list sb_dropdown clearfix">
+                    <li id="aha"><a>Dashboard</a></li>
+                    <li><a>Contacts</a></li>
+                    <li><a>Pipeline</a></li>
+                    <li><a>Tasks</a></li>
+                </ul>
+            </li>
+            <li><i class="fas fa-truck"></i><span>Orders</span>
+                <ul class="no-list sb_dropdown clearfix">
+                    <li><a href="/orders-history">Orders history</a></li>
+                </ul>
+            </li>
+            <li><i class="fas fa-cogs"></i><span>Settings</span>
+                <ul class="no-list sb_dropdown clearfix">
+                    <li><a href="/productdetails/3">Change password</a></li>
+                </ul>
+            </li>
+            <li>
+                <a  href="javascript: document.logoutForm.submit()">
+                <span>Logout</span>
+                <i id="log" class="fa fa-power-off" style="color:red;">
+
+                    <form name="logoutForm"   class="dropdown-item waves-effect waves-light"  th:action="@{/logout}" th:hidden="true" method="post">
+                        <button type="submit" class="btn btn-light" href="#">log out</button>
+                    </form>
+
+                </i>
+                </a>
+            </li>
+
+        </ul>
+
+    </aside>
+    <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+
+
+    <script th:src="@{/static/usernavbar/js/index.js}"></script>
+</div>
+</body>
+
+</html>

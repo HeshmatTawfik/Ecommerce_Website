@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Add product form bootstrap</title>
+
+
+    <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css'>
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.1/animate.min.css'>
+    <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css'>
+    <!---->
+
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.1/css/bootstrap.css'>
+    <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.0.13/css/all.css'>
+
+    <link rel="stylesheet" th:href="@{/static/style/dashboardstyle.css}"/>
+    <link rel="stylesheet" th:href="@{/static/style/AdminLTE.min.css}"/>
+
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <section class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">Add product </h3>
+        </div>
+        <div class="panel-body">
+
+            <form method="post" enctype="multipart/form-data" th:action="@{/admin/addproduct}"  class="form-horizontal" role="form"  th:object="${product}">
+
+                <!-- form-group // -->
+                <div class="form-group">
+                    <label for="name" class="col-sm-3 control-label">Product name</label>
+                    <div class="col-sm-9">
+                        <input type="text" th:field="*{name}" class="form-control" name="name" id="name" placeholder="Product name">
+                    </div>
+                    <span class="validationError"
+                          th:if="${#fields.hasErrors('name')}"
+                          th:errors="*{name}">name Error</span>
+                    <br/>
+                </div> <!-- form-group // -->
+                <div class="form-group">
+                    <label for="name" class="col-sm-3 control-label">category</label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control" name="name" id="name" placeholder="category">
+                    </div>
+                </div> <!-- form-group // -->
+                <div class="form-group">
+                    <label for="about" class="col-sm-3 control-label">description</label>
+                    <div class="col-sm-9">
+                        <textarea th:field="*{description}" class="form-control"></textarea>
+                    </div>
+                    <span class="validationError"
+                          th:if="${#fields.hasErrors('description')}"
+                          th:errors="*{description}">description Error</span>
+                    <br/>
+                </div> <!-- form-group // -->
+                <!-- form-group // -->
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">price</label>
+                    <div class="col-sm-3">
+                        <label class="control-label small" for="date_start">price: </label>
+                        <input type="text" th:field="*{price}" class="form-control" name="price" id="date_start" placeholder="price">
+                        <span class="validationError"
+                              th:if="${#fields.hasErrors('price')}"
+                              th:errors="*{price}">price Error</span>
+                        <br/>
+                    </div>
+                    <div class="col-sm-3">
+                        <label class="control-label small" for="discount">discount:</label>
+                        <input type="text" th:field="*{discount}" class="form-control" name="date_finish" id="date_finish" placeholder="discount">
+                        <span class="validationError"
+                              th:if="${#fields.hasErrors('discount')}"
+                              th:errors="*{discount}">username Error</span>
+                        <br/>
+                    </div>
+                </div> <!-- form-group // -->
+                <div class="form-group">
+                    <label for="name" class="col-sm-3 control-label">product image</label>
+                    <div class="col-sm-3">
+                        <label class="control-label small" for="file_img">image (jpg/png):
+                        </label> <input type="file" name="imageFile">
+                    </div>
+
+                </div> <!-- form-group // -->
+                <div class="form-group">
+                    <label for="tech" class="col-sm-3 control-label">Category</label>
+                    <div class="col-sm-3">
+                        <select name="ca" th:field="*{categoryName}"  class="form-control">
+                            <div th:each="category:${Categories}">
+                                <option  name="ca"   th:value="${category.name}" th:text="${category.name}"></option>
+                            </div>
+                        </select>
+                    </div>
+                </div> <!-- form-group // -->
+                <hr>
+                <div class="form-group">
+                    <div class="col-sm-offset-3 col-sm-9">
+                        <button type="submit" class="btn btn-primary">Add </button>
+                    </div>
+                </div> <!-- form-group // -->
+            </form>
+
+        </div><!-- panel-body // -->
+    </section><!-- panel// -->
+
+
+</div> <!-- container// -->
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js'></script>
+<script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js'></script>
+
+
+
+<script  src="js/index.js"></script>
+
+
+
+
+</body>
+
+</html>

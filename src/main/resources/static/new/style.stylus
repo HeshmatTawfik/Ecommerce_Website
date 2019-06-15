@@ -1,0 +1,179 @@
+*
+  margin 0
+  padding 0
+  box-sizing border-box
+  
+$wrap = 1220px
+$finger = 50px
+$blue = #5d9cec
+
+header
+  position fixed
+  z-index 10
+  width 100%
+  top 0
+  height $finger
+  overflow hidden
+  line-height $finger
+  box-shadow: 0 -5px 5px 5px rgba(0,0,0,0.3)
+  background rgba(#FFF, .8)
+.topLine
+  padding-left 1em
+  justify-content space-between
+#cart
+  color #FFF
+  padding 0 .5em
+  //text-align center
+  fill #FFF
+  min-width $finger
+  background $blue
+  cursor pointer
+  &:hover
+    .inCart
+      display block
+  .inCart
+    padding .5em .8em
+    line-height 1.6
+    box-shadow: 0 0 1em #747474;
+    list-style none
+    position fixed
+    margin-left -160px
+    width 260px
+    background #EFEFEF
+    color #000
+    display none
+    img
+      width 50px
+      float left
+    button
+      width 2.4em
+      height 2.4em
+      line-height 2.4em
+      border-radius 50%
+      background darkcyan
+      color #FFF
+      
+    li
+      overflow auto  
+    li + li
+      border-top 1px solid #CCC
+    //fix
+    p
+      padding-top 4px
+  span
+    padding-left .2em
+  svg
+    vertical-align middle
+
+
+.wr
+  max-width $wrap
+  margin auto
+.flex, .flex_wr
+  display flex
+.flex_wr
+  flex-wrap wrap
+  justify-content center
+
+body
+  padding-top 60px
+  color #666d70
+  font-family sans-serif
+  
+//.product-List
+  
+.product-item
+  position relative
+  
+  margin 4px
+  flex: 1 1 20%;
+  @media (max-width: 900px)
+    flex: 1 1 180px;
+  @media (max-width: 500px)
+    flex: 1 0 130px;
+  
+  img//285x356
+    display block
+    width 100%
+   &:hover .zoom
+    stroke $blue //#555   
+.zoom
+  cursor pointer
+  stroke #CCC
+  position absolute
+  bottom 0
+  right 0
+  transition transform .3s
+  &:hover
+    transform scale(1.4)
+    
+
+  
+.focus
+  z-index 1
+  //border 1px solid #000
+  //box-shadow: 0 0 7px rgba(#000, .4)
+  
+  &:after     
+    background: rgba(#607d8b, .8) //(14,74,125,0.8) (#ffeb3b,0.1); //EEE
+    content: '';
+    cursor: pointer;
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: -2;
+    width: 100%;
+    height: 100%;    
+
+.focus .item-buy
+  display block
+.item-buy
+  text-align center
+  position absolute
+  z-index 1
+  top calc(100% + 8px)
+  //bottom -5em
+  width 100%
+  padding 1em
+  background #FFF
+  //box-shadow: 0 0 7px rgba(#000, .4)
+  display none
+  
+  p
+    margin-bottom .5em
+  i
+    font-style normal
+    vertical-align: middle;
+    font-size 1.4em
+    line-height 1
+  b
+    cursor pointer
+    margin 0 .2em .4em
+    display inline-block
+    border 1px solid #EEE
+    padding .2em .4em
+    &:hover
+      border-color bisque
+      color #444
+      
+button
+  border 0
+  cursor pointer
+  outline none
+.btn
+  padding .5em
+  width 100%
+  font-size inherit
+  color darkgray
+  background none
+  border 1px solid #CCC
+  transition all .3s
+  &:hover:not([disabled])
+    border-color $blue //#FFF
+    background $blue //darkcyan
+    border-radius 20px
+    color #FFF
+  &[disabled]
+    cursor default
+    background #E0E4CC + 50%
+    color #555

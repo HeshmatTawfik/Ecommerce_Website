@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="http://getbootstrap.com/2.3.2/assets/css/bootstrap.css"
+          rel="stylesheet">
+    <link
+            href="http://getbootstrap.com/2.3.2/assets/css/bootstrap-responsive.css"
+            rel="stylesheet">
+    <div th:replace="/usernavbar :: usernavbar-header-css"></div>
+<style>
+    tr td:first-child {
+        -moz-border-radius-topleft: 5px;
+        -moz-border-radius-bottomleft: 5px;
+        -webkit-border-top-left-radius: 5px;
+        -webkit-border-bottom-left-radius: 5px;
+
+    }
+
+    tr td:last-child {
+        -moz-border-radius-topright: 5px;
+        -moz-border-radius-bottomright: 5px;
+        -webkit-border-top-right-radius: 5px;
+        -webkit-border-bottom-right-radius: 5px;
+    }
+    .accordion-toggle {
+        height: 100px;
+
+
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+    <table class="table" align="center" >
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>Date</th>
+            <th>Total price</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+
+        <div th:each="order:${OrdersProductList}" >
+
+            <tr  style="background-color:white; " th:onclick="'changeIc(\''+'i-'+ ${order.id} +'\')'" data-toggle="collapse"
+                th:data-target="${'#colapse-'+order.id}" class="accordion-toggle">
+
+                <td s><i th:id="${'i-'+order.id}" class="fa fa-plus" style="color: gray"></i></td>
+                <td th:text="${order.formatDate()}"></td>
+                <td th:text="${order.totalPrice}"></td>
+
+            </tr>
+            <tr>
+
+                <td colspan=3>
+                    <div th:id="${'colapse-'+order.id}" class="collapse show">
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th ></th>
+                                <th>Product name</th>
+                                <th>Quantity</th>
+                                <th>product Price</th>
+                            </tr>
+                            </thead>
+                            <tbody style="">
+                            <tr th:each="product:${order.products}">
+
+                                   <td ><a th:href="@{'/productdetails/'+${product.id}}"> <img style="width: 50px;height: 50px" th:src="@{'/photos/'+${product.pictureUrl}}" class="img-fluid" alt=""></a></td>
+                                <td th:text="${product.name}"></td>
+                                <td th:text="${product.quantity}"></td>
+                                <td th:text="${product.price}"></td>
+
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </td>
+            </tr>
+        </div>
+        </tbody>
+    </table>
+
+</div>
+<div th:replace="/usernavbar :: usernavbarheader"></div>
+
+<script type="text/javascript">
+
+    function changeIc(id) {
+        var x = document.getElementById(id);
+        /*   var minus='fa fa-minus fa-1x';
+           var plus='fa fa-plus fa-1x';
+           if (x.className===plus){
+               x.className=minus
+           }
+           else if (x.className===minus) {
+               x.className=plus;
+           }
+
+        x.classList.toggle("fa-minus");*/
+
+    }
+    $('.accordion-toggle').click(function(){
+        $(this).find('i').toggleClass('fa fa-plus fa fa-minus')
+    });
+    $('.accordion-toggle').blur(function(){
+        $(this).find('i').toggleClass('fa fa-plus fa fa-minus')
+    });
+
+</script>
+
+<script src="http://getbootstrap.com/2.3.2/assets/js/jquery.js"></script>
+<script src="http://getbootstrap.com/2.3.2/assets/js/bootstrap.js"></script>
+
+<script src="http://getbootstrap.com/2.3.2/assets/js/holder/holder.js"></script>
+<script
+        src="http://getbootstrap.com/2.3.2/assets/js/google-code-prettify/prettify.js"></script>
+
+<script src="http://getbootstrap.com/2.3.2/assets/js/application.js"></script>
+</body>
+</html>

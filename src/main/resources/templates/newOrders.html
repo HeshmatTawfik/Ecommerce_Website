@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+
+<head>
+    <meta charset="UTF-8">
+    <title>Base Table View</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap.min.css">
+
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap.min.js"></script>
+
+
+</head>
+
+<body>
+
+<div style="margin-right: 5%; margin-left: 5%">
+
+    <table id="example" class="table table-striped table-bordered" >
+        <thead>
+        <tr>
+            <th>Order date</th>
+            <th>Total price</th>
+            <th>Details</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="order:${newOrdersList}">
+            <td th:text="${order.formatDate()}"></td>
+            <td th:text="${order.getTotalPrice()}">Name 54</td>
+            <td style="padding-left: 10%"><a  class="btn btn-info" th:href="@{'/admin/details/'+${order.id}}" > Details</a></td>
+        </tr>
+
+        </tbody>
+
+    </table>
+</div>
+<script>
+    $(document).ready(function() {
+        $('#example').DataTable();
+    } );
+</script>
+</body>
+
+
+</body>
+
+</html>

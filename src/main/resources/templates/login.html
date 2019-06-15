@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <link rel="stylesheet" href="/static/style/style.css"/>
+    <meta charset="UTF-8">
+    <title>Bootstrap Snippet: Login Form</title>
+
+ <!--   <link rel="stylesheet" th:href="@{/style.css}"/>-->
+
+    <link rel='stylesheet' href='http://netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css'>
+
+
+</head>
+
+<body>
+
+<div class="container w-100" style="margin-top: 100px">
+
+    <form class="form-signin" method="post" th:action="@{/login}"
+          data-bv-feedbackicons-valid="glyphicon glyphicon-ok"
+          data-bv-feedbackicons-invalid="glyphicon glyphicon-remove"
+          data-bv-feedbackicons-validating="glyphicon glyphicon-refresh">
+        <!-- <img th:src="@{/images/k.gif}" height="30" width="30"style="margin-left: 70px;margin-top: 30px"/>-->
+        <div th:if="${param.error}" class="alert alert-error">
+            <div class="alert alert-danger">
+                <strong></strong> Wrong username or password.
+            </div>
+        </div>
+
+        <fieldset>
+            <h2 class="form-signin-heading"> login </h2>
+            <input type="text" class="form-control" name="username" placeholder="Email Address"/>
+
+            <input type="password" class="form-control" name="password" placeholder="Password"/>
+            <label class="checkbox">
+                <input type="checkbox" value="true" id="rememberMe" name="remember-me"> Remember me
+            </label>
+
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
+        </fieldset>
+    </form>
+</div>
+
+
+</body>
+
+</html>
