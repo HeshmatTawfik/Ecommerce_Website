@@ -1,2 +1,2 @@
-resources/static/* linguist-vendored
-*.rb linguist-language=Java
+
+*.css linguist-language=Java
